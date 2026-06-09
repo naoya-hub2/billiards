@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ビリヤード台 メンテナンス用品 ご提案 ｜ 接待施設向け</title>
+<style>
+  :root{
+    --green:#0b5239; --green-d:#073827; --green-l:#13694a;
+    --gold:#c2a14d; --gold-d:#a4842f;
+    --cream:#f6f3ea; --card:#fffefb;
+    --ink:#23211c; --muted:#6f6859; --line:#e6dfcf;
+    --shadow:0 10px 30px rgba(11,82,57,.10);
+    --shadow-h:0 18px 44px rgba(11,82,57,.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; color:var(--ink); background:var(--cream);
+    font-family:"Hiragino Kaku Gothic ProN","Hiragino Sans","Yu Gothic","YuGothic",Meiryo,system-ui,sans-serif;
+    line-height:1.75; -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{display:block; max-width:100%;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden; color:#fff;
+    background:
+      radial-gradient(1200px 500px at 80% -10%, rgba(194,161,77,.28), transparent 60%),
+      linear-gradient(160deg, var(--green-l), var(--green) 45%, var(--green-d));
+    padding:72px 24px 64px;
+  }
+  .hero::after{
+    content:""; position:absolute; inset:0;
+    background:repeating-linear-gradient(135deg, rgba(255,255,255,.025) 0 2px, transparent 2px 7px);
+    pointer-events:none;
+  }
+  .hero-inner{max-width:1120px; margin:0 auto; position:relative; z-index:1;}
+  .eyebrow{
+    display:inline-block; letter-spacing:.22em; font-size:12px; font-weight:700;
+    color:var(--gold); border:1px solid rgba(194,161,77,.5);
+    padding:7px 16px; border-radius:999px; margin-bottom:22px; background:rgba(0,0,0,.12);
+  }
+  .hero h1{
+    font-family:"Yu Mincho","YuMincho","Hiragino Mincho ProN",serif;
+    font-size:clamp(28px,4.6vw,46px); line-height:1.3; margin:0 0 18px; font-weight:700;
+  }
+  .hero h1 span{color:var(--gold);}
+  .hero p.lead{font-size:clamp(15px,1.7vw,18px); max-width:760px; margin:0; color:rgba(255,255,255,.92);}
+  .balls{display:flex; gap:12px; margin-top:34px;}
+  .ball{
+    width:34px;height:34px;border-radius:50%;
+    box-shadow:inset -6px -7px 12px rgba(0,0,0,.35), 0 4px 10px rgba(0,0,0,.25);
+    position:relative;
+  }
+  .ball::after{content:"";position:absolute;top:6px;left:8px;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.55);filter:blur(1px);}
+  .b1{background:#e8b53a;} .b2{background:#1f6fb2;} .b3{background:#c8412f;}
+  .b4{background:#5a3d8c;} .b5{background:#e07c2a;} .b8{background:#1c1c1c;}
+
+  /* ---------- Layout ---------- */
+  main{max-width:1120px; margin:0 auto; padding:0 24px;}
+  .intro{
+    background:var(--card); border:1px solid var(--line); border-radius:18px;
+    padding:30px 32px; margin:-36px auto 8px; position:relative; z-index:2; box-shadow:var(--shadow);
+  }
+  .intro h2{margin:0 0 10px; font-size:19px; color:var(--green);}
+  .intro p{margin:0 0 14px; color:var(--muted);}
+  .intro ul{margin:0; padding-left:0; list-style:none; display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
+  .intro li{position:relative; padding:12px 14px 12px 42px; background:#faf8f1; border:1px solid var(--line); border-radius:12px; font-size:14px;}
+  .intro li::before{content:"✓"; position:absolute; left:14px; top:11px; width:20px;height:20px; color:#fff; background:var(--gold); border-radius:50%; font-size:12px; text-align:center; line-height:20px; font-weight:700;}
+
+  /* ---------- Category ---------- */
+  .category{margin:54px 0 10px;}
+  .cat-head{display:flex; align-items:flex-start; gap:18px; margin-bottom:22px;}
+  .num{
+    flex:none; font-family:"Yu Mincho",serif; font-size:26px; font-weight:700; color:#fff;
+    width:58px;height:58px; display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(150deg,var(--green-l),var(--green-d)); border-radius:14px;
+    box-shadow:var(--shadow); border:2px solid var(--gold);
+  }
+  .cat-head h2{margin:0 0 4px; font-size:clamp(20px,2.6vw,26px); color:var(--green);}
+  .cat-head p{margin:0; color:var(--muted); font-size:14.5px; max-width:840px;}
+
+  .grid{display:grid; gap:22px; grid-template-columns:repeat(3,1fr);}
+  @media(max-width:900px){.grid{grid-template-columns:repeat(2,1fr);}}
+  @media(max-width:600px){.grid{grid-template-columns:1fr;}}
+
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:16px; overflow:hidden;
+    display:flex; flex-direction:column; box-shadow:var(--shadow); transition:transform .18s, box-shadow .18s;
+    position:relative;
+  }
+  .card:hover{transform:translateY(-4px); box-shadow:var(--shadow-h);}
+  .badge{
+    position:absolute; top:12px; left:12px; z-index:2; font-size:12px; font-weight:700; letter-spacing:.04em;
+    color:#3a2d05; background:linear-gradient(135deg,#ecc95f,var(--gold)); padding:5px 12px; border-radius:999px;
+    box-shadow:0 4px 10px rgba(0,0,0,.18);
+  }
+  .thumb{
+    height:210px; background:#fff; display:flex; align-items:center; justify-content:center; padding:14px;
+    border-bottom:1px solid var(--line);
+  }
+  .thumb img{max-height:100%; width:auto; object-fit:contain;}
+  .img-fallback{
+    width:100%;height:100%; display:flex;align-items:center;justify-content:center; text-align:center;
+    color:var(--muted); font-size:13px; background:repeating-linear-gradient(45deg,#f4f1e8 0 10px,#efeadd 10px 20px); padding:18px;
+  }
+  .card-body{padding:18px 18px 20px; display:flex; flex-direction:column; flex:1;}
+  .tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px;}
+  .tag{font-size:11.5px; padding:3px 9px; border-radius:6px; font-weight:600;}
+  .tag.brand{background:#eaf3ee; color:var(--green); border:1px solid #cfe5d8;}
+  .tag.shop{background:#f4eede; color:var(--gold-d); border:1px solid #ecdfbf;}
+  .card h3{margin:0 0 8px; font-size:16.5px; line-height:1.45;}
+  .desc{margin:0 0 16px; font-size:13.5px; color:var(--muted); flex:1;}
+  .card-foot{display:flex; align-items:center; justify-content:space-between; gap:10px; margin-top:auto;}
+  .price{font-size:20px; font-weight:700; color:var(--green); font-family:"Yu Gothic",sans-serif; white-space:nowrap;}
+  .price .tax{font-size:11px; color:var(--muted); font-weight:500; margin-left:3px;}
+  .price.ask{font-size:14px;}
+  .btn{
+    flex:none; text-decoration:none; font-size:13.5px; font-weight:700; color:#fff; white-space:nowrap;
+    background:linear-gradient(135deg,var(--green-l),var(--green)); padding:10px 16px; border-radius:10px;
+    box-shadow:0 4px 12px rgba(11,82,57,.25); transition:filter .15s, transform .15s;
+  }
+  .btn:hover{filter:brightness(1.08); transform:translateY(-1px);}
+
+  /* ---------- Summary ---------- */
+  .summary{margin:64px 0 20px;}
+  .summary-head{text-align:center; margin-bottom:28px;}
+  .summary-head h2{font-family:"Yu Mincho",serif; font-size:clamp(22px,3vw,30px); color:var(--green); margin:0 0 8px;}
+  .summary-head p{margin:0; color:var(--muted);}
+  .sets{display:grid; gap:22px; grid-template-columns:1fr 1fr;}
+  @media(max-width:760px){.sets{grid-template-columns:1fr;}}
+  .set{border-radius:18px; padding:28px; border:1px solid var(--line); background:var(--card); box-shadow:var(--shadow);}
+  .set.premium{background:linear-gradient(160deg,#0d5a3f,var(--green-d)); color:#fff; border-color:var(--green-d);}
+  .set h3{margin:0 0 4px; font-size:20px;}
+  .set.premium h3{color:#fff;}
+  .set .set-tag{font-size:12px; letter-spacing:.12em; font-weight:700; color:var(--gold-d);}
+  .set.premium .set-tag{color:var(--gold);}
+  .set ul{list-style:none; padding:0; margin:18px 0; display:grid; gap:9px;}
+  .set li{display:flex; justify-content:space-between; gap:12px; font-size:14px; padding-bottom:9px; border-bottom:1px dashed var(--line);}
+  .set.premium li{border-color:rgba(255,255,255,.18);}
+  .set li span:last-child{font-weight:700; white-space:nowrap;}
+  .set .total{display:flex; justify-content:space-between; align-items:baseline; margin-top:6px;}
+  .set .total b{font-size:13px; font-weight:600; color:var(--muted);}
+  .set.premium .total b{color:rgba(255,255,255,.8);}
+  .set .total .amt{font-family:"Yu Mincho",serif; font-size:30px; font-weight:700; color:var(--green);}
+  .set.premium .total .amt{color:var(--gold);}
+
+  /* ---------- Footer ---------- */
+  footer{margin-top:60px; background:var(--green-d); color:rgba(255,255,255,.82); padding:34px 24px 44px;}
+  .footer-inner{max-width:1120px; margin:0 auto;}
+  footer h4{margin:0 0 12px; color:var(--gold); font-size:14px; letter-spacing:.08em;}
+  footer ul{margin:0; padding-left:18px; font-size:13px; display:grid; gap:6px;}
+  footer .copy{margin-top:26px; font-size:12px; color:rgba(255,255,255,.5); border-top:1px solid rgba(255,255,255,.12); padding-top:18px;}
+
+  @media print{
+    *{ -webkit-print-color-adjust:exact !important; print-color-adjust:exact !important; }
+    @page{ size:A4; margin:12mm 11mm; }
+    body{background:#fff;}
+    .hero{padding:30px 24px;}
+    main{padding:0 12px;}
+    .card,.intro,.set{box-shadow:none !important; break-inside:avoid; page-break-inside:avoid;}
+    .card:hover{transform:none;}
+    .category{break-inside:avoid; page-break-inside:avoid;}
+    .grid{gap:12px;}
+    .thumb{height:160px;}
+    .card-foot{flex-direction:column; align-items:flex-start; gap:5px;}
+    /* 紙でもURLが分かるよう、ボタンを購入先URLのテキストに置き換え（リンクは保持） */
+    .btn{background:none !important; box-shadow:none !important; padding:0 !important; font-size:0 !important; transform:none !important;}
+    .btn::after{content:"購入先： " attr(href); font-size:9.5px; font-weight:500; color:#0b5239; word-break:break-all; line-height:1.45;}
+    .summary,.category{margin-top:26px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-inner">
+    <span class="eyebrow">BILLIARD TABLE ｜ MAINTENANCE PROPOSAL</span>
+    <h1>接待施設のビリヤード台を、<br><span>いつでも"最高の一台"</span>に保つために。</h1>
+    <p class="lead">ご来客に上質なプレー体験をご提供するための、ビリヤードメンテナンス用品をカテゴリ別にご提案します。各カテゴリにつき3つの選択肢を、購入先リンクと商品写真付きでご用意しました。ご予算・運用に合わせてお選びいただけます。</p>
+    <div class="balls" aria-hidden="true">
+      <div class="ball b1"></div><div class="ball b2"></div><div class="ball b3"></div>
+      <div class="ball b4"></div><div class="ball b5"></div><div class="ball b8"></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <h2>ご提案にあたって</h2>
+    <p>毎日は稼働しない接待施設だからこそ、「いざお客様をお迎えしたときに、ボールはピカピカ・ラシャは美しく・キューは快適」という状態を保つ備えが大切です。下記の観点で選定しています。</p>
+    <ul>
+      <li><b>見栄え重視</b> ― 来客の印象を左右する美観・高級感を優先</li>
+      <li><b>ラシャの保護</b> ― 未使用時のほこり・日焼け対策で張替コストを抑制</li>
+      <li><b>扱いやすさ</b> ― 専門知識がなくてもスタッフが手入れ可能</li>
+      <li><b>各3案・全て写真／URL付</b> ― ご予算に応じて比較・選択が可能</li>
+    </ul>
+  </section>
+
+  <!-- 01 -->
+  <section class="category">
+    <div class="cat-head">
+      <div class="num">01</div>
+      <div>
+        <h2>テーブルブラシ（ラシャ清掃）</h2>
+        <p>プレー後にラシャ（クロス）へ積もるチョーク粉やほこりを除去。一方向にやさしく掃くだけで、球の転がりと美観を保つ最も基本のメンテナンスです。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000002419_rLh80gm.jpg" alt="ブラシ 小 23cm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">汎用</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>ブラシ 小（23cm）</h3>
+          <p class="desc">取り回しやすい23cmの定番ブラシ。低価格で各台に常備しやすく、スタッフが手軽にチョーク粉・ほこりを除去できます。</p>
+          <div class="card-foot"><span class="price">¥1,100<span class="tax">税込</span></span><a class="btn" href="https://www.cue-shop.jp/view/item/000000002419?category_page_id=brush-cleaner" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000002417_iu79Ko2.jpg" alt="ブラシ 大 30.5cm" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">汎用</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>ブラシ 大（30.5cm）</h3>
+          <p class="desc">ワイド幅で広いラシャ面を一度に効率よく清掃。清掃時間を短縮でき、仕上がりも均一になる中位グレードです。</p>
+          <div class="card-foot"><span class="price">¥1,650<span class="tax">税込</span></span><a class="btn" href="https://www.cue-shop.jp/view/item/000000002417?category_page_id=brush-cleaner" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="badge">おすすめ</div>
+        <div class="thumb"><img src="https://www.newart.co.jp/images3/BRU-HO/01.webp" alt="馬毛ブラシ" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">ニューアート BRU-HO</span><span class="tag shop">ニューアート</span></div>
+          <h3>ブラシ 馬毛（天然馬毛）</h3>
+          <p class="desc">しなやかな天然馬毛でラシャを傷めにくい上質ブラシ。木目調ハンドルで見栄えもよく、来客のある接待施設の台を上品に維持できます。</p>
+          <div class="card-foot"><span class="price">¥4,312<span class="tax">税込</span></span><a class="btn" href="https://www.newart.co.jp/7080.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 02 -->
+  <section class="category">
+    <div class="cat-head">
+      <div class="num">02</div>
+      <div>
+        <h2>ボールクリーナー／ポリッシュ</h2>
+        <p>使用で曇り・チョーク汚れが付くボールを清掃し、光沢を復活。ピカピカに磨かれたボールは、お客様の第一印象を大きく高めます。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="https://www.newart.co.jp/images3/ARMSBALCLN/sp.jpg" alt="アラミス ボールクリーナー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Aramith（アラミス）</span><span class="tag shop">ニューアート</span></div>
+          <h3>アラミス ボールクリーナー 250ml</h3>
+          <p class="desc">世界の名門アラミス社製。チョーク汚れを落とし、フェノール樹脂ボール本来の光沢を保つ定番品。高級ボールを長くきれいに維持したい施設に。</p>
+          <div class="card-foot"><span class="price">¥1,727<span class="tax">税込</span></span><a class="btn" href="https://www.newart.co.jp/6868.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="https://www.newart.co.jp/images3/BALA-PRO/sp.jpg" alt="ボール磨きスプレー プロワーク" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Pro Work</span><span class="tag shop">ニューアート</span></div>
+          <h3>ボール磨きスプレー プロワーク 420ml</h3>
+          <p class="desc">吹き付けて拭くだけのエアゾールタイプ。短時間で多数のボールを手入れでき、深い光沢と保護効果を付与。日常メンテの省力化に最適です。</p>
+          <div class="card-foot"><span class="price">¥2,376<span class="tax">税込</span></span><a class="btn" href="https://www.newart.co.jp/6932.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="badge">おすすめ</div>
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000000014_YFlTrTV.jpg" alt="キューマジック ボールクリーナー CM502" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Cuemagic CM502</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>キューマジック クリーナー＆ポリッシャー</h3>
+          <p class="desc">研磨剤不使用でボールを摩耗させず、中性で手にもやさしい本格クリーナー兼ポリッシャー。高価なボールを劣化させずに艶出しでき、在庫も安定。</p>
+          <div class="card-foot"><span class="price">¥2,090<span class="tax">税込</span></span><a class="btn" href="https://www.cue-shop.jp/shopdetail/000000000014/" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 03 -->
+  <section class="category">
+    <div class="cat-head">
+      <div class="num">03</div>
+      <div>
+        <h2>テーブルカバー（防塵・保護）</h2>
+        <p>毎日は使わない接待施設こそ重要。未使用時のほこり・日焼け・落下物からラシャを守り、高額な張替えの時期を先延ばしにします。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="https://item-shopping.c.yimg.jp/i/n/stk-shop_54094125124137_i_20250614053932" alt="9フィート オックスフォード布カバー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">オックスフォード布</span><span class="tag shop">Yahoo!／STKショップ</span></div>
+          <h3>9ft デスクカバー（撥水・防塵）</h3>
+          <p class="desc">軽量・撥水のオックスフォード布。巻き紐でサッと被せられ、ほこりと落下物からラシャを手軽に保護。7/8/9ft対応の実用モデルです。</p>
+          <div class="card-foot"><span class="price">¥3,900<span class="tax">税込</span></span><a class="btn" href="https://store.shopping.yahoo.co.jp/stk-shop/54094125124137.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="https://m.media-amazon.com/images/I/515ygyTLw2L._AC_SL1500_.jpg" alt="UHATa ビリヤードテーブルカバー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">UHATa 420D</span><span class="tag shop">Amazon.co.jp</span></div>
+          <h3>UHATa 防水・防塵カバー（ブラック）</h3>
+          <p class="desc">420DポリエステルにPUコーティングを施したナイロン系カバー。防水・防塵で日焼けからも保護。落ち着いたブラックで業務空間にも馴染みます。</p>
+          <div class="card-foot"><span class="price ask">価格はリンク先で確認</span><a class="btn" href="https://www.amazon.co.jp/dp/B0CK2FJHS5" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="badge">おすすめ</div>
+        <div class="thumb"><img src="https://item-shopping.c.yimg.jp/i/n/stk-shop_98274556_i_20250604225504" alt="合皮ラテックスレザーカバー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">合皮レザー</span><span class="tag shop">Yahoo!／STKショップ</span></div>
+          <h3>レザー調 保護カバー（高級感・耐久）</h3>
+          <p class="desc">合皮（ラテックスレザー）製で高級感と耐久性があり、見栄え重視の接待施設に好適。防水・防塵・引き裂き防止でしっかり保護。7/8/9ft対応。</p>
+          <div class="card-foot"><span class="price">¥9,940<span class="tax">税込</span></span><a class="btn" href="https://store.shopping.yahoo.co.jp/stk-shop/98274556.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 04 -->
+  <section class="category">
+    <div class="cat-head">
+      <div class="num">04</div>
+      <div>
+        <h2>チョーク（消耗品・予備ストック）</h2>
+        <p>お客様が直接手に取る消耗品。良質なチョークは手や台を汚しにくく、ミスショットも減らします。常に予備を備えておきたい一品です。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000000736_9heAsUI.jpg" alt="マスター チョーク 青" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Master（米国）</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>マスター チョーク 青</h3>
+          <p class="desc">世界中のビリヤード場で最も使われる定番。1個110円と手頃で予備ストックに最適、品質が安定しており来客が安心して使えます。</p>
+          <div class="card-foot"><span class="price">¥110<span class="tax">税込/個</span></span><a class="btn" href="https://www.cue-shop.jp/shopdetail/000000000736/" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="badge">おすすめ</div>
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000000728_erVFgjM.jpg" alt="ブルーダイヤモンド チョーク" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Blue Diamond（伊）</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>ブルーダイヤモンド チョーク（2個入）</h3>
+          <p class="desc">ノリが良くサラッとした塗り心地で、手やラシャを汚しにくい上質チョーク。粉が飛び散りにくく、台を清潔に保ちやすい接待向けの一品。</p>
+          <div class="card-foot"><span class="price">¥1,980<span class="tax">税込/2個</span></span><a class="btn" href="https://www.cue-shop.jp/shopdetail/000000000728/" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000003295_GQD9dvS.jpg" alt="カムイ チョーク ROKU 青" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Kamui（日本）</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>カムイ チョーク ROKU 青</h3>
+          <p class="desc">高いグリップ力を保ちつつ、手球やラシャへの付着を大幅に低減した高級チョーク。台や球を汚しにくく、品質重視の常設・予備に最適。</p>
+          <div class="card-foot"><span class="price">¥2,618<span class="tax">税込/個</span></span><a class="btn" href="https://www.cue-shop.jp/shopdetail/000000003295/" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- 05 -->
+  <section class="category">
+    <div class="cat-head">
+      <div class="num">05</div>
+      <div>
+        <h2>タップ／キューメンテナンスツール</h2>
+        <p>ハウスキューの先端（タップ）の形を整え、シャフトを清潔に。ミスキューを防ぎ、どのキューも気持ちよく使える状態に保ちます。</p>
+      </div>
+    </div>
+    <div class="grid">
+      <article class="card">
+        <div class="thumb"><img src="https://www.newart.co.jp/images3/SHAPER/sp.jpg" alt="ウィラード シェイパー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Willard</span><span class="tag shop">ニューアート</span></div>
+          <h3>ウィラード シェイパー</h3>
+          <p class="desc">押し当てて回すだけでタップのR面を整えられる定番。Rゲージ＋超硬やすり面で、先端を素早く理想の丸みに復元。来客でも扱いやすい構造です。</p>
+          <div class="card-foot"><span class="price">¥1,584<span class="tax">税込</span></span><a class="btn" href="https://www.newart.co.jp/9446.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="badge">おすすめ</div>
+        <div class="thumb"><img src="https://www.newart.co.jp/images3/CSTPM/sp.jpg" alt="ティップマスター 多機能ツール" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">CUE'S オールインワン</span><span class="tag shop">ニューアート</span></div>
+          <h3>ティップツール ティップマスター</h3>
+          <p class="desc">タッパー・2種シェイパー・スカッファー・ピック・グロッサーの6機能を1本に集約。複数の来客キューをまとめて手入れでき、施設運用に最適です。</p>
+          <div class="card-foot"><span class="price">¥8,800<span class="tax">税込</span></span><a class="btn" href="https://www.newart.co.jp/7449.html" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb"><img src="https://makeshop-multi-images.akamaized.net/cueshopjp/itemimages/000000001971_gPYlozW.jpg" alt="カムイ Dr.Z シャフトクリーナー" loading="lazy" referrerpolicy="no-referrer" onerror="this.onerror=null;this.replaceWith(Object.assign(document.createElement('div'),{className:'img-fallback',textContent:'商品画像はリンク先でご確認ください'}))"></div>
+        <div class="card-body">
+          <div class="tags"><span class="tag brand">Kamui Dr.Z</span><span class="tag shop">キューショップジャパン</span></div>
+          <h3>カムイ Dr.Z シャフトクリーナー</h3>
+          <p class="desc">シャフトに当てて数回上下させるだけで滑りが向上し、なめらかなストロークに。多くの来客で手垢が付くシャフトを清潔・快適に保てます。</p>
+          <div class="card-foot"><span class="price">¥2,750<span class="tax">税込</span></span><a class="btn" href="https://www.cue-shop.jp/view/item/000000001971" target="_blank" rel="noopener">購入ページ →</a></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- Summary -->
+  <section class="summary">
+    <div class="summary-head">
+      <h2>おすすめ構成 ２プラン</h2>
+      <p>まずはこちらを揃えれば一通りのメンテナンスが可能です。ご予算に応じてお選びください。</p>
+    </div>
+    <div class="sets">
+      <div class="set">
+        <span class="set-tag">ECONOMY ｜ まず最低限を揃える</span>
+        <h3>スタンダード構成</h3>
+        <ul>
+          <li><span>ブラシ 大（30.5cm）</span><span>¥1,650</span></li>
+          <li><span>アラミス ボールクリーナー</span><span>¥1,727</span></li>
+          <li><span>9ft オックスフォードカバー</span><span>¥3,900</span></li>
+          <li><span>マスター チョーク 青</span><span>¥110</span></li>
+          <li><span>ウィラード シェイパー</span><span>¥1,584</span></li>
+        </ul>
+        <div class="total"><b>合計目安（税込）</b><span class="amt">約 ¥9,000</span></div>
+      </div>
+      <div class="set premium">
+        <span class="set-tag">PREMIUM ｜ 見栄えと使い勝手を重視</span>
+        <h3>プレミアム構成</h3>
+        <ul>
+          <li><span>ブラシ 馬毛</span><span>¥4,312</span></li>
+          <li><span>キューマジック クリーナー</span><span>¥2,090</span></li>
+          <li><span>レザー調 保護カバー</span><span>¥9,940</span></li>
+          <li><span>ブルーダイヤモンド チョーク</span><span>¥1,980</span></li>
+          <li><span>ティップマスター（多機能）</span><span>¥8,800</span></li>
+        </ul>
+        <div class="total"><b>合計目安（税込）</b><span class="amt">約 ¥27,100</span></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <h4>ご留意事項</h4>
+    <ul>
+      <li>掲載の価格・在庫は 2026年6月9日 時点の調査に基づくものです。最新の価格・在庫・仕様は必ず各リンク先でご確認ください。</li>
+      <li>人気商品（例：アラミス ボールクリーナー）は時期により在庫切れの場合があります。その際は同カテゴリの代替案、または Amazon 等の別ルートをご利用ください。</li>
+      <li>Amazon の UHATa カバーは価格がページ上で変動するため、金額はリンク先でのご確認をお願いします。テーブルカバーはお手持ちの台のサイズ（7/8/9ft）をご確認のうえお選びください。</li>
+      <li>商品画像は各販売サイトより参照しています。リンク先サイトの仕様により画像が表示されない場合は、ボタンから直接ご覧ください。</li>
+    </ul>
+    <div class="copy">ビリヤード台 メンテナンス用品 ご提案資料 ／ 接待施設向け ・ 各カテゴリ3案（写真・購入URL付）</div>
+  </div>
+</footer>
+
+</body>
+</html>
